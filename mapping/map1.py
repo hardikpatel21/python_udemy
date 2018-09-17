@@ -1,5 +1,6 @@
 import folium
 import pandas
+import webbrowser, os
 
 #  getting data from the csv filr using pandas
 data = pandas.read_csv("Volcanoes_USA.csv")
@@ -8,7 +9,7 @@ lon = list(data["LON"])
 elev = list(data["ELEV"])
 # print(data)
 
-map = folium.Map(location=[39.209353, -85.892224], zoom_start=6, tiles="Mapbox Bright")
+map = folium.Map(location=[39.209353, -85.892224], zoom_start=4, tiles="Mapbox Bright")
 
 # It is usefull to add multiple child in the map like multiple markers on the map
 fg = folium.FeatureGroup(name="My Map")
@@ -24,3 +25,11 @@ for lt,ln,el in zip(lat, lon, elev):
 map.add_child(fg)
 
 map.save("Map1.html")
+
+# MacOS
+# chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
+
+# Windows
+chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+
+webbrowser.get(chrome_path).open("Map1.html")
