@@ -44,11 +44,14 @@ while True:
             continue
         status=1
         # store countour values into x, y, h,w
-        (x,y,h,w)=cv2.boundingRect(countour)
+        (x,y,w,h)=cv2.boundingRect(countour)
         # build the rectangle using above values
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0),3)
 
     status_list.append(status)
+
+    status_list=status_list[-2:]
+
     if status_list[-1] == 1 and status_list[-2]==0:
         times.append(datetime.now())
     if status_list[-1] == 0 and status_list[-2]==1:
@@ -63,9 +66,12 @@ while True:
     key=cv2.waitKey(1)
     # when 'q' is pressed it stops the while loop and closes the camera
     if key==ord('q'):
-        times.append(datetime.now())
+        if status==1:
+            times.append(datetime.now())
         break
+print(status_list)
 print(times)
+
 
 for i in range(0,len(times),2):
     df=df.append({"Start":times[i],"End":times[i+1]},ignore_index=True)
