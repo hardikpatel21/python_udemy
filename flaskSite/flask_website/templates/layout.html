@@ -5,6 +5,7 @@
     <title>Flask App</title>
     <!-- call css file in python in flask framework  -->
     <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    
   </head>
   <body>
     <header>
@@ -16,6 +17,7 @@
               <!-- call python functions  -->
               <li><a href="{{ url_for('home')}}">Home</a></li>
               <li><a href="{{ url_for('about')}}">About</a></li>
+              <li><a href="{{ url_for('plot')}}">Plot</a></li>
 
             </ul>
           </nav>

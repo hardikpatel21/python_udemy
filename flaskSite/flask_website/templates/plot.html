@@ -1,0 +1,22 @@
+<!--extends parent file  -->
+{%extends "layout.html"%}
+<!-- call parent block form layout.html file  -->
+{%block content%}
+<!-- include appropriate javascript and css links for graphs
+    claas both links form the variables in script1.py-->
+<link rel="stylesheet" href={{cdn_css | safe}} type="text/css">
+<script type="text/javascript" src={{cdn_js | safe}}></script>
+
+</script>
+<div class="about">
+  <h1>About US</h1>
+  <p>This is a test Website again</p>
+  <p>This was added later</p>
+</div>
+<!-- call the script one varible from the script1.py file
+which contents javascript conponants of the graph using safe method -->
+{{script1 | safe}}
+<!-- call div1 variable from the script1.py file
+ which has html componants og graph using safe method -->
+ {{div1 | safe}}
+{%endblock%}
